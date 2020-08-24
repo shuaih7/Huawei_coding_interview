@@ -1,19 +1,26 @@
 # -*- coding: utf-8 -*-
 
+import math
+
+# Very good method to judge whether the input integer is prime
+def isPrime(n):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
 if __name__ == "__main__":
     while True:
         try:
-            from collections import Counter
-
-            a = input()
-            # c是只出现一次的字符的列表
-            c = list(map(lambda c: c[0], list(filter(lambda c: c[1] == 1, Counter(a).most_common()))))
-            # 如果c为空，说明没有出现一次的字符。输出-1
-            if not c:print(-1)
-            for i in a:
-                if i in c:
-                    print(i)
+            num ,start= int(input()) // 2,1
+            if num%2==1:
+                start=0
+            for i in range(start, num, 2):
+                a, b = num + i, num - i
+                if isPrime(a) and isPrime(b):
+                    print(b)
+                    print(a)
                     break
-
-        except:
-            break
+     
+        except: break
+    
